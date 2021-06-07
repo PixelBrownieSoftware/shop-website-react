@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Pikachu toy",
+        "price": 25.55,
+        "desc": "A big fluffy pikachu toy",
+        "pictureUrl": "https://www.character-online.com/content/images/thumbs/0008996_pokemon-12-plush-pikachu.jpeg"
+    },
+    {
+        "name": "Rubber duck",
+        "price": 2,
+        "desc": "A toy that you can use in your bathtub or shower. They can float on the water.",
+        "pictureUrl": "https://cdn.shopify.com/s/files/1/1175/4528/products/rubber-duck-newborn-photo.jpg?v=1561450188"
+    },
+    {
+        "name": "Death note manga",
+        "price": 3.25,
+        "desc": "A manga that is about people dying through a book.",
+        "pictureUrl": "https://images-na.ssl-images-amazon.com/images/I/81iDNjn-r3L.jpg"
+    }
+]

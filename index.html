@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<meta charset='UTF-8'>
+<link rel="stylesheet" href="stuff.css">
+<script src='https://unpkg.com/react@16.3.1/umd/react.production.min.js'></script>
+<script src='https://unpkg.com/react-dom@16.3.1/umd/react-dom.production.min.js'>    </script>
+<script src='https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js'></script>
+<script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+
+<head>
+    <div class="content">
+        <title>Shop test app</title>
+    </div>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script type='text/babel'>
+        const Link = ReactRouterDOM.Link;
+        const Route = ReactRouterDOM.Route;
+
+        var listOfProd = null;
+        getData();
+
+        const App = () => (
+            <ReactRouterDOM.HashRouter>
+                <div class="stuff">
+                    <Link to="/">
+                        <button class="buttons">Home</button>
+                    </Link>
+                    <Link to="/shop">
+                        <button class="buttons">Shop</button>
+                    </Link>
+                    <Link to="/about">
+                        <button class="buttons">About</button>
+                    </Link>
+                </div>
+
+                <Route path="/" exact component={Home} />
+                <Route path="/shop" component={Shop} />
+                <Route path="/about" component={About} />
+            </ReactRouterDOM.HashRouter>
+        )
+
+        class Section extends React.Component {
+            render() {
+
+                return (
+                    <div class="stuff">
+                        <h1>{this.props.title}</h1>
+                        <p>{this.props.desc}</p>
+                    </div>
+
+                );
+            }
+        }
+
+        class About extends React.Component {
+            render() {
+
+                return (
+                    <div class="about-section">
+                        <h1>About</h1>
+                        <Section title="What we are about" desc=
+                            "We were a group founded in 2011 which is dedicated to making toys and books people will love." />
+                    </div>
+                );
+            }
+        }
+        class Home extends React.Component {
+            render() {
+
+                return (
+                    <div class="about-section">
+                        <h1>Home</h1>
+                        <Section desc="Click on the icons on top to navigate." />
+                    </div>
+                );
+            }
+        }
+        class Shop extends React.Component {
+            render() {
+
+                return (
+                    <div class="about-section">
+                        <h1>Shop</h1>
+                        {
+                            listOfProd.map((pers) =>
+                            (<Product
+                                title={pers.name}
+                                price={"£" + pers.price}
+                                desc={pers.desc}
+                                image={pers.pictureUrl} />
+                            )
+                            )
+                        }
+                    </div>
+                );
+            }
+        }
+        class Product extends React.Component {
+            render() {
+
+                return (
+                    <div class="product">
+                        <h1>{this.props.title}</h1>
+                        <h2>{this.props.price}</h2>
+                        <p>{this.props.desc}</p>
+                        <img src={this.props.image} class="image"></img>
+                    </div>
+                );
+            }
+        }
+        async function getData() {
+
+            var a = await fetch('products.json');
+            var jDat = await a.json();
+            listOfProd = jDat;
+        }
+
+        ReactDOM.render(<App />, document.querySelector('#root'));
+    </script>
+</body>
+
+</html>
